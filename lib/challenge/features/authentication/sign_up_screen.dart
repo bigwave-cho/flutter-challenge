@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/challenge/features/authentication/confirmation_code_screen.dart';
 import 'package:tiktok/challenge/features/authentication/customize_screen.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
@@ -80,6 +81,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         // formField의 onSaved 함수 발동
         _formKey.currentState!.save();
         debugPrint('$formData');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ConfirmationCodeScreen(data: formData),
+          ),
+        );
       }
     }
   }
@@ -304,19 +311,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     padding: const EdgeInsets.symmetric(
                       horizontal: 30,
                     ),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.blue.shade300,
-                        borderRadius: BorderRadius.circular(99),
-                      ),
-                      child: const Text(
-                        'Sign up!',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                    child: GestureDetector(
+                      onTap: _onSubmitTap,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.blue.shade300,
+                          borderRadius: BorderRadius.circular(99),
+                        ),
+                        child: const Text(
+                          'Sign up!',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),

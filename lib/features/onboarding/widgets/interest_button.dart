@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 class InterestButton extends StatefulWidget {
+  final String interest;
+  final Function(String)? onSelectInterest;
+
   const InterestButton({
     Key? key,
     required this.interest,
+    this.onSelectInterest,
   }) : super(key: key);
-
-  final String interest;
 
   @override
   State<InterestButton> createState() => _InterestButtonState();
@@ -19,6 +21,9 @@ class _InterestButtonState extends State<InterestButton> {
   void _onTap() {
     setState(() {
       _isSelected = !_isSelected;
+      if (widget.onSelectInterest != null) {
+        widget.onSelectInterest!(widget.interest);
+      }
     });
   }
 

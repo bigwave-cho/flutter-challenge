@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tiktok/challenge/features/authentication/initial_screen.dart';
+import 'package:tiktok/challenge/features/onboarding/interests_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 import 'package:tiktok/features/onboarding/interests_screen.dart';
@@ -28,9 +30,8 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
       ),
-      // home: const InitialScreen(),
+      home: const InitialScreen(),
       // home: const SignUpScreen(),
-      home: const InterestsScreen(),
     );
   }
 }
