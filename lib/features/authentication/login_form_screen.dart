@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/widgets/form_button.dart';
+import 'package:tiktok/features/onboarding/interests_screen.dart';
 
 class LoginFormScreen extends StatefulWidget {
   const LoginFormScreen({super.key});
@@ -26,6 +27,11 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
       if (_formKey.currentState!.validate()) {
         // formField의 onSaved 함수 발동
         _formKey.currentState!.save();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const InterestsScreen(),
+          ),
+        );
 
         debugPrint('$formData');
       }
@@ -53,7 +59,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
               child: Column(
                 children: [
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                     ),
                     validator: (value) {
@@ -71,7 +77,7 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                   ),
                   Gaps.v16,
                   TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Password',
                     ),
                     validator: (value) {
