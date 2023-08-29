@@ -48,9 +48,29 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    // * 쿠퍼티노 사용하려면 최상위 위젯을 cupertino app으로 바꿔줘야 함.
     return Scaffold(
-      body: screens[_selectedIndex],
+      body: Stack(
+        children: [
+          //Offstage 위젯 : offstage 불린에 따라 화면에 보이고 안보이게
+          // 단 위젯은 계속 살아있는 상태다.
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: const StfScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const StfScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 3,
+            child: const StfScreen(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 4,
+            child: const StfScreen(),
+          )
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Padding(
