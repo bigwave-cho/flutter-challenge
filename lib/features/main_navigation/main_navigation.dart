@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -10,36 +11,45 @@ class MainNavigation extends StatefulWidget {
 
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
-  void _onTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
+  final screens = [
+    Center(
+      child: Text('Home'),
+    ),
+    Center(
+      child: Text('Search'),
+    ),
+    Center(
+      child: Text('Search'),
+    ),
+    Center(
+      child: Text('Search'),
+    ),
+    Center(
+      child: Text('Search'),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: NavigationBar(
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: _onTap,
-        destinations: const [
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.house,
-              color: Colors.white,
+    // * 쿠퍼티노 사용하려면 최상위 위젯을 cupertino app으로 바꿔줘야 함.
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.house,
             ),
             label: 'Home',
           ),
-          NavigationDestination(
-            icon: FaIcon(
-              FontAwesomeIcons.magnifyingGlass,
-              color: Colors.white,
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.search,
             ),
             label: 'Search',
           ),
         ],
       ),
+      tabBuilder: (context, index) => screens[_selectedIndex],
     );
   }
 }
