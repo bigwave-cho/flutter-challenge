@@ -5,6 +5,7 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/main_navigation/stf_screen.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok/features/users/user_profile_screen.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -15,31 +16,6 @@ class MainNavigation extends StatefulWidget {
 
 class _MainNavigationState extends State<MainNavigation> {
   int _selectedIndex = 0;
-
-  final screens = [
-    // ** 글로벌키 없이 같은 스크린을 두면
-    //플러터는 다른 위젯이라고 인지하지 못하고 위젯을 그대로 사용하게 됨.
-    // 따라서 글로벌키를 이용해서 다른 위젯임을 플러터에게 알려줄 수 있음.
-    StfScreen(
-      key: GlobalKey(),
-    ),
-    // Center(
-    //   child: Text('Home'),
-    // ),
-    StfScreen(
-      key: GlobalKey(),
-    ),
-
-    Center(
-      child: Text('Search'),
-    ),
-    Center(
-      child: Text('INbox'),
-    ),
-    Center(
-      child: Text('Profile'),
-    ),
-  ];
 
   void _onTap(int index) {
     setState(() {
@@ -79,7 +55,7 @@ class _MainNavigationState extends State<MainNavigation> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const StfScreen(),
+            child: const UserProfileScreen(),
           )
         ],
       ),
@@ -132,6 +108,31 @@ class _MainNavigationState extends State<MainNavigation> {
 }
 
 /*
+
+final screens = [
+    // ** 글로벌키 없이 같은 스크린을 두면
+    //플러터는 다른 위젯이라고 인지하지 못하고 위젯을 그대로 사용하게 됨.
+    // 따라서 글로벌키를 이용해서 다른 위젯임을 플러터에게 알려줄 수 있음.
+    StfScreen(
+      key: GlobalKey(),
+    ),
+    // Center(
+    //   child: Text('Home'),
+    // ),
+    StfScreen(
+      key: GlobalKey(),
+    ),
+
+    Center(
+      child: Text('Search'),
+    ),
+    Center(
+      child: Text('INbox'),
+    ),
+    Center(
+      child: Text('Profile'),
+    ),
+  ];
 
       body: screens[_selectedIndex],
 
