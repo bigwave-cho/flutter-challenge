@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok/challenge/features/authentication/initial_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/onboarding/interests_screen.dart';
@@ -48,6 +49,11 @@ class TikTokApp extends StatelessWidget {
         brightness: Brightness.dark,
         primaryColor: const Color(0xffe9435a),
         scaffoldBackgroundColor: Colors.black,
+        textTheme: GoogleFonts.itimTextTheme(
+          ThemeData(
+            brightness: Brightness.dark,
+          ).textTheme,
+        ),
         appBarTheme: AppBarTheme(
           foregroundColor: Colors.white,
           backgroundColor: Colors.black,
