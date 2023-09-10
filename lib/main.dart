@@ -23,7 +23,15 @@ class TikTokApp extends StatelessWidget {
       title: 'TikTok clone',
       themeMode: ThemeMode.system,
       theme: ThemeData(
+        brightness: Brightness.light,
         primaryColor: const Color(0xffe9435a),
+        //https://m2.material.io/design/typography/the-type-system.html#type-scale
+        //https://m3.material.io/styles/typography/type-scale-tokens
+        textTheme: TextTheme(
+          headlineLarge: TextStyle(
+            fontSize: Sizes.size24,
+          ),
+        ),
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: const AppBarTheme(
           foregroundColor: Colors.black,
@@ -37,17 +45,21 @@ class TikTokApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        brightness: Brightness.dark,
         primaryColor: const Color(0xffe9435a),
         scaffoldBackgroundColor: Colors.black,
-        appBarTheme: const AppBarTheme(
-          foregroundColor: Colors.black,
-          backgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.black,
           elevation: 0,
           titleTextStyle: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: Sizes.size16 + Sizes.size2,
             fontWeight: FontWeight.w600,
           ),
+        ),
+        bottomAppBarTheme: BottomAppBarTheme(
+          color: Colors.grey.shade800,
         ),
       ),
       // home: const InitialScreen(),

@@ -7,6 +7,7 @@ import 'package:tiktok/challenge/features/main_navigation/post_thread_screen.dar
 import 'package:tiktok/challenge/features/main_navigation/widgets/c_nav_tab.dart';
 import 'package:tiktok/challenge/features/profile/profile_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/utils.dart';
 
 class CMainNavigation extends StatefulWidget {
   const CMainNavigation({super.key});
@@ -69,7 +70,7 @@ class _CMainNavigationState extends State<CMainNavigation> {
         ],
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.white,
+        color: isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(Sizes.size24),
           child: Row(

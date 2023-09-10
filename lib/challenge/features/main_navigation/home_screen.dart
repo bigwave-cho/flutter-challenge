@@ -261,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 text: TextSpan(
                                   text: post['content'],
                                   style: const TextStyle(
-                                    color: Colors.black,
+                                    // color: Colors.black,
                                     height: 1.4,
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w600,
