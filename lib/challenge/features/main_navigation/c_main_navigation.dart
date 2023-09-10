@@ -5,6 +5,7 @@ import 'package:tiktok/challenge/features/main_navigation/c_search_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/home_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/post_thread_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/widgets/c_nav_tab.dart';
+import 'package:tiktok/challenge/features/profile/profile_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 class CMainNavigation extends StatefulWidget {
@@ -63,7 +64,7 @@ class _CMainNavigationState extends State<CMainNavigation> {
           ),
           Offstage(
             offstage: _selectedIndex != 4,
-            child: const Scaffold(),
+            child: const ProfileScreen(),
           )
         ],
       ),

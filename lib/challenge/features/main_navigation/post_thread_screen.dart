@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/challenge/features/video/photo_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 class PostThreadScreen extends StatefulWidget {
@@ -17,7 +20,6 @@ class _PostThreadScreenState extends State<PostThreadScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _textFormFieldController.addListener(() {
       if (_textFormFieldController.text.length > 0) {
@@ -34,6 +36,21 @@ class _PostThreadScreenState extends State<PostThreadScreen> {
   void dispose() {
     _textFormFieldController.dispose();
     super.dispose();
+  }
+
+  String? imagePath;
+
+  Future<void> _getPhoto() async {
+    final prop = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PhotoScreen(),
+      ),
+    );
+
+    imagePath = prop['filePath'];
+    setState(() {});
+    print(imagePath);
   }
 
   @override
@@ -203,8 +220,46 @@ class _PostThreadScreenState extends State<PostThreadScreen> {
                                 const SizedBox(
                                   height: 20,
                                 ),
-                                const Icon(
-                                  Icons.plumbing_outlined,
+                                //사진 작업
+                                if (imagePath != null)
+                                  Container(
+                                    width: 320,
+                                    height: 200,
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                      color: Colors.amber,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Stack(children: [
+                                      Positioned.fill(
+                                        child: Image(
+                                          fit: BoxFit.cover,
+                                          image: FileImage(
+                                            File(imagePath!),
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 10,
+                                        right: 10,
+                                        child: InkWell(
+                                          onTap: () {
+                                            imagePath = null;
+                                            setState(() {});
+                                          },
+                                          child: FaIcon(
+                                            FontAwesomeIcons.solidCircleXmark,
+                                            color: Colors.grey.shade700,
+                                          ),
+                                        ),
+                                      ),
+                                    ]),
+                                  ),
+                                InkWell(
+                                  onTap: _getPhoto,
+                                  child: const Icon(
+                                    Icons.plumbing_outlined,
+                                  ),
                                 ),
                               ],
                             ),

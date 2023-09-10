@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tiktok/challenge/features/authentication/initial_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/onboarding/interests_screen.dart';
+import 'package:tiktok/challenge/features/video/photo_screen.dart';
+import 'package:tiktok/challenge/features/video/video_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/features/main_navigation/main_navigation.dart';
@@ -19,6 +21,7 @@ class TikTokApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TikTok clone',
+      themeMode: ThemeMode.system,
       theme: ThemeData(
         primaryColor: const Color(0xffe9435a),
         scaffoldBackgroundColor: Colors.white,
@@ -33,10 +36,25 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
       ),
+      darkTheme: ThemeData(
+        primaryColor: const Color(0xffe9435a),
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.black,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: Sizes.size16 + Sizes.size2,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
       // home: const InitialScreen(),
       // home: const SignUpScreen(),
-      home: const MainNavigation(),
-      // home: const CMainNavigation(),
+      // home: const MainNavigation(),
+      home: const CMainNavigation(),
+      // home: const PhotoScreen(),
     );
   }
 }

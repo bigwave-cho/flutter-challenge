@@ -5,6 +5,7 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/main_navigation/stf_screen.dart';
 import 'package:tiktok/features/main_navigation/widgets/nav_tab.dart';
 import 'package:tiktok/features/main_navigation/widgets/post_video_button.dart';
+import 'package:tiktok/features/users/sliver_example.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
 
 class MainNavigation extends StatefulWidget {
