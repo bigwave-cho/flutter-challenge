@@ -24,6 +24,9 @@ class TikTokApp extends StatelessWidget {
       title: 'TikTok clone',
       themeMode: ThemeMode.system,
       theme: ThemeData(
+        // material 3 강제적용
+        useMaterial3: true,
+
         brightness: Brightness.light,
         primaryColor: const Color(0xffe9435a),
         //https://m2.material.io/design/typography/the-type-system.html#type-scale
@@ -46,14 +49,11 @@ class TikTokApp extends StatelessWidget {
         ),
       ),
       darkTheme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
         primaryColor: const Color(0xffe9435a),
         scaffoldBackgroundColor: Colors.black,
-        textTheme: GoogleFonts.itimTextTheme(
-          ThemeData(
-            brightness: Brightness.dark,
-          ).textTheme,
-        ),
+        textTheme: Typography.whiteCupertino,
         appBarTheme: AppBarTheme(
           foregroundColor: Colors.white,
           backgroundColor: Colors.black,

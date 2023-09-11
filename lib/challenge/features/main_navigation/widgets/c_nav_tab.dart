@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/constants/gaps.dart';
+import 'package:tiktok/utils.dart';
 
 class CNavTab extends StatelessWidget {
   const CNavTab({
@@ -24,7 +25,7 @@ class CNavTab extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: Container(
-          color: Colors.white,
+          color: isDarkMode(context) ? Colors.grey.shade900 : Colors.white,
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 300),
             opacity: isSelected ? 1 : 0.6,
@@ -33,7 +34,11 @@ class CNavTab extends StatelessWidget {
               children: [
                 FaIcon(
                   isSelected ? selectedIcon : icon,
-                  color: isSelected ? Colors.black : Colors.grey.shade500,
+                  color: (isSelected && isDarkMode(context))
+                      ? Colors.white
+                      : (isSelected && !isDarkMode(context))
+                          ? Colors.black
+                          : Colors.grey.shade500,
                 ),
               ],
             ),
