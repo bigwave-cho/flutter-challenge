@@ -9,7 +9,7 @@ import 'package:tiktok/challenge/features/profile/settings_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
 
 final router = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/settings/privacy',
   routes: [
     // GoRoute(
     //   path: "/:tab(home|search|activity|settings)",
@@ -29,6 +29,7 @@ final router = GoRouter(
     //     tab: 'home',
     //   ),
     // ),
+
     GoRoute(
       path: "/:tab(home|search|activity|profile|settings)",
       name: CMainNavigation.routeName,

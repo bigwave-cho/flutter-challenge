@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok/challenge/features/authentication/initial_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/onboarding/interests_screen.dart';
+import 'package:tiktok/challenge/features/profile/settings_screen.dart';
 import 'package:tiktok/challenge/features/video/photo_screen.dart';
 import 'package:tiktok/challenge/features/video/video_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
@@ -11,7 +12,7 @@ import 'package:tiktok/features/main_navigation/main_navigation.dart';
 
 import 'package:tiktok/features/onboarding/interests_screen.dart';
 import 'package:tiktok/router.dart';
-import 'package:tiktok/video_config.dart';
+import 'package:tiktok/inherited_example.dart';
 
 void main() {
   runApp(const TikTokApp());
@@ -22,8 +23,7 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VideoConfig(
-        child: MaterialApp.router(
+    return MaterialApp.router(
       routerConfig: router,
       title: 'TikTok clone',
       themeMode: ThemeMode.system,
@@ -77,6 +77,6 @@ class TikTokApp extends StatelessWidget {
       // home: const MainNavigation(),
       // home: const CMainNavigation(),
       // home: const PhotoScreen(),
-    ));
+    );
   }
 }
