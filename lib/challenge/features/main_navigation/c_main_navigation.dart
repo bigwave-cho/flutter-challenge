@@ -9,6 +9,7 @@ import 'package:tiktok/challenge/features/profile/profile_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok/video_config.dart';
 
 class CMainNavigation extends StatefulWidget {
   static String routeName = "mainNavigation";
@@ -65,6 +66,8 @@ class _CMainNavigationState extends State<CMainNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    print(VideoConfig.of(context).autoMute);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Stack(

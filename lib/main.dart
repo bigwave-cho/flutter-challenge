@@ -11,6 +11,7 @@ import 'package:tiktok/features/main_navigation/main_navigation.dart';
 
 import 'package:tiktok/features/onboarding/interests_screen.dart';
 import 'package:tiktok/router.dart';
+import 'package:tiktok/video_config.dart';
 
 void main() {
   runApp(const TikTokApp());
@@ -21,7 +22,8 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return VideoConfig(
+        child: MaterialApp.router(
       routerConfig: router,
       title: 'TikTok clone',
       themeMode: ThemeMode.system,
@@ -75,6 +77,6 @@ class TikTokApp extends StatelessWidget {
       // home: const MainNavigation(),
       // home: const CMainNavigation(),
       // home: const PhotoScreen(),
-    );
+    ));
   }
 }
