@@ -66,7 +66,7 @@ class _CMainNavigationState extends State<CMainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    print(VideoConfig.of(context).autoMute);
+    print(VideoConfigData.of(context).autoMute);
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
