@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/video_config.dart';
+import 'package:provider/provider.dart';
 
 class PrivacyScreen extends StatefulWidget {
   static String routeName = '/settings/privacy';
@@ -51,7 +52,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
             // 딱 애니메이티드 빌더만 리빌드 됨. (AnimatedBuilder 장점)
             AnimatedBuilder(
               // value notifier는 ValueListenableBuilder 사용해도 됨
-              animation: videoConfig,
+              animation: vidoeConfig2,
               builder: (context, child) => SwitchListTile(
                 activeColor: Colors.black,
                 title: Row(children: const [
@@ -74,6 +75,27 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   vidoeConfig2.value = !vidoeConfig2.value;
                 },
               ),
+            ),
+            SwitchListTile(
+              activeColor: Colors.black,
+              title: Row(children: const [
+                FaIcon(
+                  FontAwesomeIcons.lock,
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Text(
+                  'Private profile',
+                )
+              ]),
+              // value: isPrivateProfileOn,
+              value: context.watch<VideoConfig>().isAutoplay,
+              // onChanged: _togglePrivateProfile,
+              onChanged: (value) {
+                // videoConfig.toggleAutoMute();
+                context.read<VideoConfig>().toggleAutoplay();
+              },
             ),
             const ListTile(
               leading: FaIcon(
