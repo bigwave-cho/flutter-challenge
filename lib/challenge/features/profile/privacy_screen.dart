@@ -14,16 +14,16 @@ class PrivacyScreen extends StatefulWidget {
 class _PrivacyScreenState extends State<PrivacyScreen> {
   bool isPrivateProfileOn = false;
 
-  bool _autoMute = videoConfig.autoMute;
+  bool _autoMute = vidoeConfig2.value;
 
   @override
   void initState() {
     super.initState();
     //방법2: addListener 에서 변화 감지하기.
-    videoConfig.addListener(() {
+    vidoeConfig2.addListener(() {
       setState(() {
-        _autoMute = videoConfig.autoMute;
-        print(videoConfig.autoMute);
+        _autoMute = vidoeConfig2.value;
+        // print(videoConfig.autoMute);
       });
     });
   }
@@ -48,8 +48,9 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
         child: ListView(
           children: [
             //방법1 : ChangeNotifier는 AnimatedBuilder와 함께 사용
-            // 딱 애니메이티드 빌더만 리빌드 됨.
+            // 딱 애니메이티드 빌더만 리빌드 됨. (AnimatedBuilder 장점)
             AnimatedBuilder(
+              // value notifier는 ValueListenableBuilder 사용해도 됨
               animation: videoConfig,
               builder: (context, child) => SwitchListTile(
                 activeColor: Colors.black,
@@ -65,10 +66,12 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   )
                 ]),
                 // value: isPrivateProfileOn,
-                value: videoConfig.autoMute,
+                value: vidoeConfig2.value,
                 // onChanged: _togglePrivateProfile,
                 onChanged: (value) {
-                  videoConfig.toggleAutoMute();
+                  // videoConfig.toggleAutoMute();
+
+                  vidoeConfig2.value = !vidoeConfig2.value;
                 },
               ),
             ),

@@ -15,4 +15,9 @@ class VideoConfig extends ChangeNotifier {
   }
 }
 
+// ChangeNotifier는 여러 값이나
+// API를 다룰 때 좋다.
 final videoConfig = VideoConfig();
+
+// 단순한 원시값등을 다룰 때는 ValueNotifier 추천
+final vidoeConfig2 = ValueNotifier(false);
