@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/challenge/features/profile/privacy_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends StatefulWidget {
+  static String routeName = '/settings';
+
   const SettingsScreen({super.key});
 
   @override
@@ -12,8 +15,9 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   void _showPrivacyScreen() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const PrivacyScreen()));
+    context.goNamed('privacy');
+    // Navigator.push(context,
+    //     MaterialPageRoute(builder: (context) => const PrivacyScreen()));
   }
 
   void _showAlertDialog(BuildContext context) async {

@@ -4,8 +4,19 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/users/widgets/persistent_tabbar.dart';
 
+class UserProfileArgs {
+  final String username;
+
+  UserProfileArgs({required this.username});
+}
+
 class UserProfileScreen extends StatefulWidget {
-  const UserProfileScreen({super.key});
+  final String username;
+
+  const UserProfileScreen({
+    super.key,
+    required this.username,
+  });
 
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CActivityScreen extends StatefulWidget {
+  static String routeName = '/activity';
+
   const CActivityScreen({super.key});
 
   @override

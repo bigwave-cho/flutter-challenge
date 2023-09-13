@@ -5,6 +5,8 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 class HomeScreen extends StatefulWidget {
+  static String routeName = '/home';
+
   const HomeScreen({super.key});
 
   @override

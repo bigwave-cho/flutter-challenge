@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/challenge/features/main_navigation/widgets/user_tile.dart';
 
 class CSearchScreen extends StatefulWidget {
+  static String routeName = '/search';
+
   const CSearchScreen({super.key});
 
   @override

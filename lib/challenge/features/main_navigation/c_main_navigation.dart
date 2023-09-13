@@ -8,16 +8,31 @@ import 'package:tiktok/challenge/features/main_navigation/widgets/c_nav_tab.dart
 import 'package:tiktok/challenge/features/profile/profile_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class CMainNavigation extends StatefulWidget {
-  const CMainNavigation({super.key});
+  static String routeName = "mainNavigation";
+  final String tab;
+
+  const CMainNavigation({
+    super.key,
+    required this.tab,
+  });
 
   @override
   State<CMainNavigation> createState() => _CMainNavigationState();
 }
 
 class _CMainNavigationState extends State<CMainNavigation> {
-  int _selectedIndex = 3;
+  final List<String> _tabs = [
+    "home",
+    "search",
+    "x",
+    "activity",
+    "settings",
+  ];
+
+  late int _selectedIndex = _tabs.indexOf(widget.tab);
 
   @override
   void initState() {
@@ -25,12 +40,17 @@ class _CMainNavigationState extends State<CMainNavigation> {
   }
 
   void _onTap(int index) {
+    context.go("/${_tabs[index]}");
+
     setState(() {
       _selectedIndex = index;
     });
   }
 
   void _showPostBottomModal(BuildContext context) {
+    // context.go(HomeScreen.routeName);
+    // context.go(HomeScreen.routeName);
+
     showModalBottomSheet(
       isScrollControlled: true,
       shape: RoundedRectangleBorder(

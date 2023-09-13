@@ -10,6 +10,7 @@ import 'package:tiktok/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/features/main_navigation/main_navigation.dart';
 
 import 'package:tiktok/features/onboarding/interests_screen.dart';
+import 'package:tiktok/router.dart';
 
 void main() {
   runApp(const TikTokApp());
@@ -20,7 +21,8 @@ class TikTokApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'TikTok clone',
       themeMode: ThemeMode.system,
       theme: ThemeData(
@@ -71,7 +73,7 @@ class TikTokApp extends StatelessWidget {
       // home: const InitialScreen(),
       // home: const SignUpScreen(),
       // home: const MainNavigation(),
-      home: const CMainNavigation(),
+      // home: const CMainNavigation(),
       // home: const PhotoScreen(),
     );
   }

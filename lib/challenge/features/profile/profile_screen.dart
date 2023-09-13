@@ -6,6 +6,8 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 class ProfileScreen extends StatefulWidget {
+  static String routeName = '/profile';
+
   const ProfileScreen({super.key});
 
   @override
