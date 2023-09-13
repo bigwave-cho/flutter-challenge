@@ -76,6 +76,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                 },
               ),
             ),
+            // provider는 애니메이션 빌더 없어도 굳굳
             SwitchListTile(
               activeColor: Colors.black,
               title: Row(children: const [
