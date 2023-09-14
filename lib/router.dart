@@ -3,9 +3,9 @@ import 'package:tiktok/challenge/features/main_navigation/c_activity_screen.dart
 import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_search_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/home_screen.dart';
-import 'package:tiktok/challenge/features/profile/privacy_screen.dart';
-import 'package:tiktok/challenge/features/profile/profile_screen.dart';
-import 'package:tiktok/challenge/features/profile/settings_screen.dart';
+import 'package:tiktok/challenge/features/profile/view/privacy_screen.dart';
+import 'package:tiktok/challenge/features/profile/view/profile_screen.dart';
+import 'package:tiktok/challenge/features/profile/view/settings_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
 
 final router = GoRouter(
