@@ -1,34 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok/challenge/features/profile/view_models/darkmode_config_vm.dart';
-import 'package:tiktok/nvvm_with_provider/view_models/config_vm.dart';
+import 'package:tiktok/nvvm_with_riverpod/view_models/config_vm.dart';
 import 'package:tiktok/video_config.dart';
-import 'package:provider/provider.dart';
 
-class ExampleScreen extends StatefulWidget {
+class ExampleScreen extends ConsumerWidget {
   static String routeName = '/settings/privacy';
 
   const ExampleScreen({super.key});
 
   @override
-  State<ExampleScreen> createState() => _ExampleScreenState();
-}
-
-class _ExampleScreenState extends State<ExampleScreen> {
-  bool isPrivateProfileOn = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
@@ -77,9 +59,12 @@ class _ExampleScreenState extends State<ExampleScreen> {
                   'Muted',
                 )
               ]),
-              // value: isPrivateProfileOn,
-              value: false,
-              onChanged: (value) {},
+              // provider만 넣어주면 단순히 반환하는 데이터만 불러올 수 있음.
+              value: ref.watch(riverpodConfigProvider).muted,
+              onChanged: (value) {
+                //notifire 클래스에 접근하고 싶다면 .notifire를 전달.
+                ref.read(riverpodConfigProvider.notifier).setMuted(value);
+              },
             ),
             SwitchListTile(
               activeColor: Colors.black,
@@ -94,8 +79,11 @@ class _ExampleScreenState extends State<ExampleScreen> {
                   'Autoplay',
                 )
               ]),
-              value: false,
-              onChanged: (value) {},
+              value: ref.watch(riverpodConfigProvider).autoplay,
+              onChanged: (value) {
+                //notifire 클래스에 접근하고 싶다면 .notifire를 전달.
+                ref.read(riverpodConfigProvider.notifier).setAutoplay(value);
+              },
             ),
             SwitchListTile(
               activeColor: Colors.red,
