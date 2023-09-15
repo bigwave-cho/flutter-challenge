@@ -7,7 +7,7 @@ import 'package:tiktok/challenge/features/profile/view/privacy_screen.dart';
 import 'package:tiktok/challenge/features/profile/view/profile_screen.dart';
 import 'package:tiktok/challenge/features/profile/view/settings_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
-import 'package:tiktok/nvvm_with_riverpod/provider_applied_example.dart';
+import 'package:tiktok/nvvm_with_riverpod/riverpod_applied_example.dart';
 
 final router = GoRouter(
   initialLocation: '/',

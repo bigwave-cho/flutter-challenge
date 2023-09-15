@@ -14,16 +14,26 @@ import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/features/main_navigation/main_navigation.dart';
 
-import 'package:tiktok/features/onboarding/interests_screen.dart';
+import 'package:tiktok/nvvm_with_riverpod/repo/config_repository.dart';
+import 'package:tiktok/nvvm_with_riverpod/view_models/config_vm.dart';
 import 'package:tiktok/router.dart';
-import 'package:tiktok/video_config.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  final preferences = await SharedPreferences.getInstance();
+  final repository = RiverpodConfigRepository(preferences);
+
   runApp(
-    const ProviderScope(
-      child: TikTokApp(),
+    ProviderScope(
+      // share prefs의 인스턴스 생성 완료 후 override가 필요해서 추가
+      // 원래라면 없어도 될..
+      overrides: [
+        riverpodConfigProvider.overrideWith(
+          () => RiverpodConfigViewModel(repository),
+        ),
+      ],
+      child: const TikTokApp(),
     ),
   );
 }
