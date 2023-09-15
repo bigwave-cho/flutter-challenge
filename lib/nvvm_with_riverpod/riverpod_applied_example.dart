@@ -8,7 +8,7 @@ class ExampleScreen extends ConsumerWidget {
   static String routeName = '/settings/privacy';
 
   const ExampleScreen({super.key});
-
+  // STF Consumer은 stfwidget에서 context가 아무데서나 사용 가능한것 처럼 ref도 똑같음.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
