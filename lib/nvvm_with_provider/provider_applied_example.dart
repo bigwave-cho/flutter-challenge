@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/challenge/features/profile/view_models/darkmode_config_vm.dart';
-import 'package:tiktok/nvvm/view_models/config_vm.dart';
+import 'package:tiktok/nvvm_with_provider/view_models/config_vm.dart';
 import 'package:tiktok/video_config.dart';
 import 'package:provider/provider.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok/nvvm/models/config_model.dart';
-import 'package:tiktok/nvvm/repo/config_repository.dart';
+import 'package:tiktok/nvvm_with_provider/models/config_model.dart';
+import 'package:tiktok/nvvm_with_provider/repo/config_repository.dart';
 
 class ConfigViewModel extends ChangeNotifier {
   final ConfigRepository _repository; // 1. repo를 불러오고

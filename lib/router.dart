@@ -7,9 +7,10 @@ import 'package:tiktok/challenge/features/profile/view/privacy_screen.dart';
 import 'package:tiktok/challenge/features/profile/view/profile_screen.dart';
 import 'package:tiktok/challenge/features/profile/view/settings_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
+import 'package:tiktok/nvvm_with_riverpod/provider_applied_example.dart';
 
 final router = GoRouter(
-  initialLocation: '/settings/privacy',
+  initialLocation: '/',
   routes: [
     // GoRoute(
     //   path: "/:tab(home|search|activity|settings)",
@@ -21,6 +22,10 @@ final router = GoRouter(
     //     );
     //   },
     // ),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => ExampleScreen(),
+    ),
 
     // GoRoute(
     //   path: '/',

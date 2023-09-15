@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/challenge/features/profile/view_models/darkmode_config_vm.dart';
+import 'package:tiktok/nvvm_with_provider/view_models/config_vm.dart';
+import 'package:tiktok/video_config.dart';
+import 'package:provider/provider.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class ExampleScreen extends StatefulWidget {
   static String routeName = '/settings/privacy';
 
-  const PrivacyScreen({super.key});
+  const ExampleScreen({super.key});
 
   @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
+  State<ExampleScreen> createState() => _ExampleScreenState();
 }
 
-class _PrivacyScreenState extends State<PrivacyScreen> {
+class _ExampleScreenState extends State<ExampleScreen> {
   bool isPrivateProfileOn = false;
 
   @override
@@ -37,22 +41,29 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
         ),
         child: ListView(
           children: [
-            SwitchListTile(
-              activeColor: Colors.black,
-              title: Row(children: const [
-                FaIcon(
-                  FontAwesomeIcons.lock,
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Text(
-                  'Private profile',
-                )
-              ]),
-              value: false,
-              onChanged: (value) {},
+            //방법1 : ChangeNotifier는 AnimatedBuilder와 함께 사용
+            // 딱 애니메이티드 빌더만 리빌드 됨. (AnimatedBuilder 장점)
+            AnimatedBuilder(
+              // value notifier는 ValueListenableBuilder 사용해도 됨
+              animation: vidoeConfig2,
+              builder: (context, child) => SwitchListTile(
+                activeColor: Colors.black,
+                title: Row(children: const [
+                  FaIcon(
+                    FontAwesomeIcons.lock,
+                  ),
+                  SizedBox(
+                    width: 30,
+                  ),
+                  Text(
+                    'Private profile',
+                  )
+                ]),
+                value: false,
+                onChanged: (value) {},
+              ),
             ),
+            // provider는 애니메이션 빌더 없어도 굳굳
             SwitchListTile(
               activeColor: Colors.black,
               title: Row(children: const [
@@ -66,6 +77,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   'Muted',
                 )
               ]),
+              // value: isPrivateProfileOn,
               value: false,
               onChanged: (value) {},
             ),
@@ -128,6 +140,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                 ],
               ),
             ),
+
             const ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.eyeSlash,

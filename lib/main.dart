@@ -15,8 +15,6 @@ import 'package:tiktok/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/features/main_navigation/main_navigation.dart';
 
 import 'package:tiktok/features/onboarding/interests_screen.dart';
-import 'package:tiktok/nvvm/repo/config_repository.dart';
-import 'package:tiktok/nvvm/view_models/config_vm.dart';
 import 'package:tiktok/router.dart';
 import 'package:tiktok/video_config.dart';
 

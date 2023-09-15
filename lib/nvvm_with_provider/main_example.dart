@@ -4,9 +4,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok/challenge/features/profile/repo/darkmode_repo.dart';
 import 'package:tiktok/challenge/features/profile/view_models/darkmode_config_vm.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:tiktok/nvvm_with_provider/repo/config_repository.dart';
+import 'package:tiktok/nvvm_with_provider/view_models/config_vm.dart';
 
-import 'package:tiktok/nvvm/repo/config_repository.dart';
-import 'package:tiktok/nvvm/view_models/config_vm.dart';
 import 'package:tiktok/router.dart';
 
 void main() async {
