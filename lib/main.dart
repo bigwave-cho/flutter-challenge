@@ -23,6 +23,7 @@ void main() async {
 
   final preferences = await SharedPreferences.getInstance();
   final repository = RiverpodConfigRepository(preferences);
+  final darkRepository = DarkmodeRepository(preferences);
 
   runApp(
     ProviderScope(
@@ -31,6 +32,9 @@ void main() async {
       overrides: [
         riverpodConfigProvider.overrideWith(
           () => RiverpodConfigViewModel(repository),
+        ),
+        darkmodeConfigProvider.overrideWith(
+          () => DarkModeConfigViewModel(darkRepository),
         ),
       ],
       child: const TikTokApp(),
@@ -46,7 +50,10 @@ class TikTokApp extends ConsumerWidget {
     return MaterialApp.router(
       routerConfig: router,
       title: 'TikTok clone',
-      themeMode: ThemeMode.dark,
+
+      themeMode: ref.watch(darkmodeConfigProvider).isDark
+          ? ThemeMode.dark
+          : ThemeMode.light,
       theme: ThemeData(
         // material 3 강제적용
         useMaterial3: true,

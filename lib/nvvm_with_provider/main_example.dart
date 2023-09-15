@@ -8,7 +8,7 @@ import 'package:tiktok/nvvm_with_provider/repo/config_repository.dart';
 import 'package:tiktok/nvvm_with_provider/view_models/config_vm.dart';
 
 import 'package:tiktok/router.dart';
-
+/*
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -19,9 +19,9 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => DarkModeConfigViewModel(darkmodeRepository),
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => DarkModeConfigViewModel(darkmodeRepository),
+        // ),
         ChangeNotifierProvider(
           create: (context) => ConfigViewModel(configRepository),
         ),
@@ -95,3 +95,4 @@ class TikTokApp extends StatelessWidget {
     );
   }
 }
+*/

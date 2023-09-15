@@ -4,7 +4,7 @@ import 'package:tiktok/challenge/features/profile/view_models/darkmode_config_vm
 import 'package:tiktok/nvvm_with_provider/view_models/config_vm.dart';
 import 'package:tiktok/video_config.dart';
 import 'package:provider/provider.dart';
-
+/*
 class EXPrivacyScreen extends StatefulWidget {
   static String routeName = '/settings/privacy';
 
@@ -239,3 +239,4 @@ class _PrivacyScreenState extends State<EXPrivacyScreen> {
     );
   }
 }
+*/

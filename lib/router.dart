@@ -24,15 +24,15 @@ final router = GoRouter(
     //   },
     // ),
 
-    // GoRoute(
-    //   path: '/',
-    //   builder: (context, state) => ExampleScreen(),
-    // ),
-
     GoRoute(
       path: '/',
-      builder: (context, state) => const RiverpodStfExample(),
+      builder: (context, state) => PrivacyScreen(),
     ),
+
+    // GoRoute(
+    //   path: '/',
+    //   builder: (context, state) => const RiverpodStfExample(),
+    // ),
 
     // GoRoute(
     //   path: '/',

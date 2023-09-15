@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/challenge/features/profile/view_models/darkmode_config_vm.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class PrivacyScreen extends ConsumerStatefulWidget {
   static String routeName = '/settings/privacy';
 
   const PrivacyScreen({super.key});
 
   @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
+  ConsumerState<PrivacyScreen> createState() => _PrivacyScreenState();
 }
 
-class _PrivacyScreenState extends State<PrivacyScreen> {
+class _PrivacyScreenState extends ConsumerState<PrivacyScreen> {
   bool isPrivateProfileOn = false;
 
   @override
@@ -98,8 +100,11 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                   'DarkMode',
                 )
               ]),
-              value: false,
-              onChanged: (value) {},
+              value: ref.watch(darkmodeConfigProvider).isDark,
+              onChanged: (value) {
+                print(value);
+                ref.read(darkmodeConfigProvider.notifier).setDarkmode(value);
+              },
             ),
             const ListTile(
               leading: FaIcon(
