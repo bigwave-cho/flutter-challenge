@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,7 @@ import 'package:tiktok/challenge/features/video/video_screen.dart';
 import 'package:tiktok/constants/sizes.dart';
 import 'package:tiktok/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/features/main_navigation/main_navigation.dart';
+import 'package:tiktok/firebase_options.dart';
 
 import 'package:tiktok/nvvm_with_riverpod/repo/config_repository.dart';
 import 'package:tiktok/nvvm_with_riverpod/view_models/config_vm.dart';
@@ -20,6 +22,10 @@ import 'package:tiktok/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   final preferences = await SharedPreferences.getInstance();
   final repository = RiverpodConfigRepository(preferences);
