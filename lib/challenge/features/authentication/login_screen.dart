@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/challenge/features/authentication/login_form_screen.dart';
 import 'package:tiktok/challenge/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
@@ -20,7 +21,7 @@ class CLoginScreen extends StatelessWidget {
   void _onEmailLoginTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const LoginFormScreen(),
+        builder: (context) => const CLoginFormScreen(),
       ),
     );
   }

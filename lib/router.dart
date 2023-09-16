@@ -14,7 +14,7 @@ import 'package:tiktok/features/users/user_profile_screen.dart';
 final routerProvider = Provider(
   (ref) {
     // router에 ref.watch 두면 자동으로 rebuild
-    ref.watch(authState);
+    // ref.watch(authState);
 
     return GoRouter(
       initialLocation: '/home',

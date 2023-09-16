@@ -44,7 +44,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             isDestructiveAction: true,
             onPressed: () {
               // 원래는 view는 repo와 직접 소통하면 안되지만 이건 간단한 거니까 예외로..
-              ref.read(authRepo).signOut();
+              // ref.read(authRepo).signOut();
+              context.go('/');
             },
             child: const Text('Yes'),
           ),
