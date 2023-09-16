@@ -7,6 +7,8 @@ import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
 class SignUpScreen extends StatefulWidget {
+  static String routeURL = '/signup';
+
   const SignUpScreen({super.key});
 
   @override

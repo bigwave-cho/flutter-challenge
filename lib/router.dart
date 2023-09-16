@@ -1,5 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok/challenge/features/authentication/login_screen.dart';
+import 'package:tiktok/challenge/features/authentication/repos/authentication.repo.dart';
+import 'package:tiktok/challenge/features/authentication/sign_up_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_activity_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_search_screen.dart';
@@ -16,6 +19,20 @@ final routerProvider = Provider(
   (ref) {
     return GoRouter(
       initialLocation: '/home',
+      redirect: (context, state) {
+        final isLoggedIn = ref.read(authRepo).isLoggendIn;
+        //state.subloc : subloc - user가 있는 location
+
+        // 로그인 안돼있는데 /home에 있으면 "/" 로 리다이렉
+        if (!isLoggedIn) {
+          if (state.subloc != SignUpScreen.routeURL &&
+              state.subloc != CLoginScreen.routeURL) {
+            return CLoginScreen.routeURL;
+          }
+        }
+        // 로그인 돼있으면 리다이렉트 실행 X
+        return null;
+      },
       routes: [
         // GoRoute(
         //   path: "/:tab(home|search|activity|settings)",
@@ -46,6 +63,10 @@ final routerProvider = Provider(
         //   ),
         // ),
 
+        GoRoute(
+          path: CLoginScreen.routeURL,
+          builder: (context, state) => const CLoginScreen(),
+        ),
         GoRoute(
           path: "/:tab(home|search|activity|profile|settings)",
           name: CMainNavigation.routeName,
