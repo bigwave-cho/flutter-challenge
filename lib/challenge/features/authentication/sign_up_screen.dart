@@ -1,18 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/challenge/features/authentication/confirmation_code_screen.dart';
 import 'package:tiktok/challenge/features/authentication/customize_screen.dart';
+import 'package:tiktok/challenge/features/authentication/view_models/signup_view_model.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
-class SignUpScreen extends StatefulWidget {
+class SignUpScreen extends ConsumerStatefulWidget {
   static String routeURL = '/signup';
 
   const SignUpScreen({super.key});
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  ConsumerState<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 /*
@@ -21,7 +23,7 @@ Global key
 2. Form의 state나 메서드를 실행 가능
  */
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isFormValid = false;
 
@@ -83,12 +85,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
         // formField의 onSaved 함수 발동
         _formKey.currentState!.save();
         debugPrint('$formData');
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ConfirmationCodeScreen(data: formData),
-          ),
-        );
+
+        // 이런식으로 state를 바깥에서 수정 가능하게 됨.
+        final state = ref.read(signUpForm.notifier).state;
+
+        ref.read(signUpForm.notifier).state = {
+          ...state,
+          "email": formData['email'],
+          "name": formData['name'],
+          "password": formData['password'],
+          "birthday": formData['birthday'],
+        };
+
+        ref.read(signUpProvider.notifier).signUp();
+
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => ConfirmationCodeScreen(data: formData),
+        //   ),
+        // );
       }
     }
   }
@@ -263,6 +279,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         formData['email'] = newValue;
                       },
                     ),
+                    //password
+                    TextFormField(
+                      readOnly: isAgree,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        hintText: 'password',
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.grey.shade400,
+                          ),
+                        ),
+                        // suffixIcon: isEmailValid
+                        //     ? const Icon(
+                        //         Icons.check_circle,
+                        //         color: Colors.green,
+                        //       )
+                        //     : null,
+                      ),
+                      onChanged: (value) {},
+                      validator: (value) {
+                        if (value != null) {
+                          return null;
+                        }
+                      },
+                      onSaved: (newValue) {
+                        if (newValue == null) return;
+                        formData['password'] = newValue;
+                      },
+                    ),
                     Gaps.v16,
                     TextFormField(
                       onSaved: (newValue) {
@@ -322,14 +367,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           color: Colors.blue.shade300,
                           borderRadius: BorderRadius.circular(99),
                         ),
-                        child: const Text(
-                          'Sign up!',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child: ref.watch(signUpProvider).isLoading
+                            ? CircularProgressIndicator()
+                            : const Text(
+                                'Sign up!',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                       ),
                     ),
                   ),

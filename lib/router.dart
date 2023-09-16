@@ -68,6 +68,10 @@ final routerProvider = Provider(
           builder: (context, state) => const CLoginScreen(),
         ),
         GoRoute(
+          path: SignUpScreen.routeURL,
+          builder: (context, state) => const SignUpScreen(),
+        ),
+        GoRoute(
           path: "/:tab(home|search|activity|profile|settings)",
           name: CMainNavigation.routeName,
           builder: (context, state) {
