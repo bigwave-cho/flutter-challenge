@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/onboarding/widgets/horizontal_selection_widget.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
+import 'package:go_router/go_router.dart';
 
 class CSecondInterestScreen extends StatefulWidget {
+  static String routeURL = '/interest';
+
   const CSecondInterestScreen({super.key});
 
   @override
@@ -25,6 +29,7 @@ class _CSecondInterestScreenState extends State<CSecondInterestScreen> {
   }
 
   void _onSubmit() {
+    context.go('/home');
     // if (_interests.length < 3) return;
     // Navigator.push(
     //   context,

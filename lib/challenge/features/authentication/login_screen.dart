@@ -9,7 +9,7 @@ import 'package:tiktok/features/authentication/widgets/auth_button.dart';
 import 'package:go_router/go_router.dart';
 
 class CLoginScreen extends StatelessWidget {
-  static String routeURL = '/login';
+  static String routeURL = '/';
 
   const CLoginScreen({super.key});
 

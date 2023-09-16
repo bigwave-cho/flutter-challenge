@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok/challenge/features/authentication/confirmation_code_screen.dart';
 import 'package:tiktok/challenge/features/authentication/customize_screen.dart';
 import 'package:tiktok/challenge/features/authentication/view_models/signup_view_model.dart';
+import 'package:tiktok/challenge/features/onboarding/second_interests_screen.dart';
 import 'package:tiktok/constants/gaps.dart';
 import 'package:tiktok/constants/sizes.dart';
 
@@ -97,7 +98,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
           "birthday": formData['birthday'],
         };
 
-        ref.read(signUpProvider.notifier).signUp();
+        ref.read(signUpProvider.notifier).signUp(context);
 
         // Navigator.push(
         //   context,

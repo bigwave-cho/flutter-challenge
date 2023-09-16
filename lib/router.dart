@@ -7,6 +7,7 @@ import 'package:tiktok/challenge/features/main_navigation/c_activity_screen.dart
 import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart';
 import 'package:tiktok/challenge/features/main_navigation/c_search_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/home_screen.dart';
+import 'package:tiktok/challenge/features/onboarding/second_interests_screen.dart';
 import 'package:tiktok/challenge/features/profile/view/privacy_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
 
@@ -69,6 +70,10 @@ final routerProvider = Provider(
         GoRoute(
           path: SignUpScreen.routeURL,
           builder: (context, state) => const SignUpScreen(),
+        ),
+        GoRoute(
+          path: CSecondInterestScreen.routeURL,
+          builder: (context, state) => const CSecondInterestScreen(),
         ),
         GoRoute(
           path: "/:tab(home|search|activity|profile|settings)",

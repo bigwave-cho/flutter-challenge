@@ -1,12 +1,15 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tiktok/challenge/features/authentication/repos/authentication.repo.dart';
+import 'package:tiktok/utils.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpViewModel extends AsyncNotifier<void> {
   late final AuthenticationRepository _authRepo;
 
-  Future<void> signUp() async {
+  Future<void> signUp(BuildContext context) async {
     state = AsyncValue.loading();
 
     final form = ref.read(signUpForm);
@@ -21,6 +24,12 @@ class SignUpViewModel extends AsyncNotifier<void> {
     // AsyncValue.guard!
     state = await AsyncValue.guard(
         () async => await _authRepo.signUp(form['email'], form['password']));
+
+    if (state.hasError) {
+      showFirebaseErrorSnack(context, state.error);
+    } else {
+      context.go('/interest');
+    }
 
     /*
     static Future<AsyncValue<T>> guard<T>(Future<T> Function() future) async {
