@@ -15,7 +15,7 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   void _showPrivacyScreen() {
-    context.goNamed('privacy');
+    context.pushNamed('privacy');
     // Navigator.push(context,
     //     MaterialPageRoute(builder: (context) => const PrivacyScreen()));
   }

@@ -54,7 +54,7 @@ class TikTokApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
-      routerConfig: router,
+      routerConfig: ref.watch(routerProvider),
       title: 'TikTok clone',
 
       themeMode: ref.watch(darkmodeConfigProvider).isDark
