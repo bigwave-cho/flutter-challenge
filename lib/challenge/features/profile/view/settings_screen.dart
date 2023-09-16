@@ -1,19 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok/challenge/features/profile/view/privacy_screen.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tiktok/challenge/features/authentication/repos/authentication.repo.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   static String routeName = '/settings';
 
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   void _showPrivacyScreen() {
     context.pushNamed('privacy');
     // Navigator.push(context,
@@ -42,7 +43,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             /// the action's text color to red.
             isDestructiveAction: true,
             onPressed: () {
-              Navigator.pop(context);
+              // 원래는 view는 repo와 직접 소통하면 안되지만 이건 간단한 거니까 예외로..
+              ref.read(authRepo).signOut();
             },
             child: const Text('Yes'),
           ),
@@ -55,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Settings'),
         elevation: 1,
       ),
       body: Padding(
@@ -65,7 +67,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         child: ListView(
           children: [
-            ListTile(
+            const ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.user,
               ),
@@ -73,7 +75,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 'Follow and invite friends',
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.bell,
               ),
@@ -83,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             InkWell(
               onTap: _showPrivacyScreen,
-              child: ListTile(
+              child: const ListTile(
                 leading: FaIcon(
                   FontAwesomeIcons.lock,
                 ),
@@ -92,7 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.userCheck,
               ),
@@ -100,7 +102,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 'Account',
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.thumbsUp,
               ),
@@ -108,7 +110,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 'Help',
               ),
             ),
-            ListTile(
+            const ListTile(
               leading: FaIcon(
                 FontAwesomeIcons.info,
               ),
@@ -117,8 +119,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.only(top: 20),
-              decoration: BoxDecoration(
+              padding: const EdgeInsets.only(top: 20),
+              decoration: const BoxDecoration(
                 border: Border(
                   top: BorderSide(
                     color: Colors.grey,

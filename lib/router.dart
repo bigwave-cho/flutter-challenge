@@ -8,15 +8,14 @@ import 'package:tiktok/challenge/features/main_navigation/c_main_navigation.dart
 import 'package:tiktok/challenge/features/main_navigation/c_search_screen.dart';
 import 'package:tiktok/challenge/features/main_navigation/home_screen.dart';
 import 'package:tiktok/challenge/features/profile/view/privacy_screen.dart';
-import 'package:tiktok/challenge/features/profile/view/profile_screen.dart';
-import 'package:tiktok/challenge/features/profile/view/settings_screen.dart';
 import 'package:tiktok/features/users/user_profile_screen.dart';
-import 'package:tiktok/nvvm_with_riverpod/riverpod_applied_example.dart';
-import 'package:tiktok/nvvm_with_riverpod/riverpod_stf_example.dart';
 
 // GoRouter도 Provider로 감싸면 Ref에 접근 가능
 final routerProvider = Provider(
   (ref) {
+    // router에 ref.watch 두면 자동으로 rebuild
+    ref.watch(authState);
+
     return GoRouter(
       initialLocation: '/home',
       redirect: (context, state) {
