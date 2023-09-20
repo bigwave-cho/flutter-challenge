@@ -37,7 +37,7 @@ class _PhotoScreenState extends State<PhotoScreen>
   late final Animation<double> _buttonAnimation =
       Tween(begin: 1.0, end: 1.3).animate(_buttonAnimationController);
 
-  late final CameraController _cameraController;
+  // late final CameraController _cameraController;
 
   Future<void> _toggleSelfieMode() async {
     _isSelfieMode = !_isSelfieMode;
@@ -51,13 +51,13 @@ class _PhotoScreenState extends State<PhotoScreen>
 
     if (cameras.isEmpty) return;
 
-    _cameraController = CameraController(
-        cameras[_isSelfieMode ? 1 : 0], ResolutionPreset.medium,
-        imageFormatGroup: ImageFormatGroup.bgra8888);
+    // _cameraController = CameraController(
+    //     cameras[_isSelfieMode ? 1 : 0], ResolutionPreset.medium,
+    //     imageFormatGroup: ImageFormatGroup.bgra8888);
 
-    await _cameraController.initialize();
+    // await _cameraController.initialize();
 
-    await _cameraController.prepareForVideoRecording();
+    // await _cameraController.prepareForVideoRecording();
   }
 
   Future<void> initPermissions() async {
@@ -72,7 +72,7 @@ class _PhotoScreenState extends State<PhotoScreen>
     if (!cameraDenied && !micDenied) {
       _hasPermission = true;
 
-      await initCamera();
+      // await initCamera();
       setState(() {});
     }
   }
@@ -94,7 +94,10 @@ class _PhotoScreenState extends State<PhotoScreen>
 
     if (!mounted) return;
 
-    Navigator.pop(context, {'filePath': photo.path});
+    Navigator.pop(context, {
+      'filePath': photo.path,
+      'file': photo,
+    });
 
     // Navigator.push(
     //   context,
@@ -111,7 +114,7 @@ class _PhotoScreenState extends State<PhotoScreen>
   void dispose() {
     _buttonAnimationController.dispose();
     _progressAnimationController.dispose();
-    _cameraController.dispose();
+    // _cameraController.dispose();
 
     // TODO: implement dispose
     super.dispose();
@@ -135,9 +138,9 @@ class _PhotoScreenState extends State<PhotoScreen>
   // }
 
   Future<void> _takePhoto() async {
-    final file = await _cameraController.takePicture();
+    // final file = await _cameraController.takePicture();
 
-    Navigator.pop(context, {'filePath': file.path});
+    // Navigator.pop(context, {'filePath': file.path});
   }
 
   @override
@@ -147,7 +150,90 @@ class _PhotoScreenState extends State<PhotoScreen>
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        child: !_hasPermission || !_cameraController.value.isInitialized
+        child: !_hasPermission
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "Initializing...",
+                    style:
+                        TextStyle(color: Colors.white, fontSize: Sizes.size20),
+                  ),
+                  Gaps.v20,
+                  CircularProgressIndicator.adaptive()
+                ],
+              )
+            : Stack(
+                children: [
+                  if (_appActivated)
+                    // Positioned.fill(child: CameraPreview()),
+                    Positioned(
+                      top: Sizes.size32,
+                      left: Sizes.size20,
+                      child: IconButton(
+                        onPressed: _toggleSelfieMode,
+                        color: Colors.white,
+                        icon: Icon(
+                          Icons.cameraswitch,
+                        ),
+                      ),
+                    ),
+                  Positioned(
+                    bottom: Sizes.size40,
+                    child: GestureDetector(
+                      onTap: _takePhoto,
+                      child: ScaleTransition(
+                        scale: _buttonAnimation,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                              width: Sizes.size80 + Sizes.size14,
+                              height: Sizes.size80 + Sizes.size14,
+                              child: CircularProgressIndicator(
+                                color: Colors.red.shade400,
+                                strokeWidth: Sizes.size6,
+                                value: _progressAnimationController.value,
+                              ),
+                            ),
+                            Container(
+                              width: Sizes.size80,
+                              height: Sizes.size80,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.red.shade400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 50,
+                    right: 100,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: IconButton(
+                        onPressed: _onPickPhotoPressed,
+                        icon: const FaIcon(
+                          FontAwesomeIcons.image,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
+  }
+}
+
+
+/*
+ child: !_hasPermission || !_cameraController.value.isInitialized
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -223,7 +309,4 @@ class _PhotoScreenState extends State<PhotoScreen>
                   ),
                 ],
               ),
-      ),
-    );
-  }
-}
+ */

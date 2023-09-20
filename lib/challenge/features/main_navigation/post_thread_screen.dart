@@ -1,18 +1,21 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tiktok/challenge/features/video/photo_screen.dart';
+import 'package:tiktok/challenge/features/video/view_models/upload_photo_view_model.dart';
 import 'package:tiktok/constants/sizes.dart';
 
-class PostThreadScreen extends StatefulWidget {
+class PostThreadScreen extends ConsumerStatefulWidget {
   const PostThreadScreen({super.key});
 
   @override
-  State<PostThreadScreen> createState() => _PostThreadScreenState();
+  ConsumerState<PostThreadScreen> createState() => _PostThreadScreenState();
 }
 
-class _PostThreadScreenState extends State<PostThreadScreen> {
+class _PostThreadScreenState extends ConsumerState<PostThreadScreen> {
   final TextEditingController _textFormFieldController =
       TextEditingController();
 
@@ -39,18 +42,28 @@ class _PostThreadScreenState extends State<PostThreadScreen> {
   }
 
   String? imagePath;
+  XFile? photoFile;
 
   Future<void> _getPhoto() async {
     final prop = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PhotoScreen(),
+        builder: (context) => const PhotoScreen(),
       ),
     );
 
     imagePath = prop['filePath'];
+    photoFile = prop['file'];
     setState(() {});
-    print(imagePath);
+  }
+
+  void _onUplodaThread() async {
+    if (photoFile != null) {
+      ref.read(uploadPhotoProvider.notifier).uploadPhoto(
+            photo: File(photoFile!.path),
+            description: _textFormFieldController.text,
+          );
+    }
   }
 
   @override
@@ -281,7 +294,9 @@ class _PostThreadScreenState extends State<PostThreadScreen> {
                   children: [
                     Text('Anyone can reply'),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _onUplodaThread();
+                      },
                       child: Text(
                         'Done',
                         style: TextStyle(
