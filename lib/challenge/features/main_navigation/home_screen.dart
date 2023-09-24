@@ -68,7 +68,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       body: ref.watch(homeProvider).when(
             data: ((data) {
-              print(data.length);
               if (data.length == 0) {
                 return Center(
                   child: Text(

@@ -5,7 +5,7 @@ import 'package:tiktok/challenge/features/video/repos/photo_repo.dart';
 
 import '../../video/models/photo_model.dart';
 
-class HomeViewModel extends AsyncNotifier<List<PhotoModel>> {
+class SearchViewModel extends AsyncNotifier<List<PhotoModel>> {
   late final PhotosRepository _repository;
 
   List<PhotoModel> _list = [];
@@ -22,6 +22,23 @@ class HomeViewModel extends AsyncNotifier<List<PhotoModel>> {
       );
 
       return newList.toList();
+    });
+  }
+
+  getFilteredPosts(String query) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      final result = await _repository.fetchPhotos();
+      final newList = result.docs.map(
+        (doc) => PhotoModel.fromJson(
+          doc.data(),
+        ),
+      );
+
+      List<PhotoModel> filteredList =
+          newList.where((post) => post.description.contains(query)).toList();
+
+      return filteredList;
     });
   }
 
@@ -42,6 +59,12 @@ class HomeViewModel extends AsyncNotifier<List<PhotoModel>> {
   }
 }
 
-final homeProvider = AsyncNotifierProvider<HomeViewModel, List<PhotoModel>>(
-  () => HomeViewModel(),
+final searchProvider = AsyncNotifierProvider<SearchViewModel, List<PhotoModel>>(
+  () => SearchViewModel(),
 );
+
+
+/*
+   List<PhotoModel> filteredList =
+          newList.where((post) => post.description.contains(query)).toList();
+ */
